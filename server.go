@@ -37,13 +37,13 @@ func Secret(w http.ResponseWriter, r *http.Request) {
 	user := os.Getenv("USER")
 	password := os.Getenv("PASSWORD")
 
-	fmt.Fprintf(w, "User: %s. PAssword: %s", user, password)
+	fmt.Fprintf(w, "User: %s. Password: %s", user, password)
 }
 
 func Healthz(w http.ResponseWriter, r *http.Request) {
 	duration := time.Since(startedAt)
 
-	if duration.Seconds() > 25 {
+	if duration.Seconds() < 10 {
 		w.WriteHeader(500)
 		w.Write([]byte(fmt.Sprintf("Duration: %v", duration.Seconds())))
 	} else {
