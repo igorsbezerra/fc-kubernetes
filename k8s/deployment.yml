@@ -20,6 +20,12 @@ spec:
           image: igorsouzadocker/kubernetes-go:v3
           env:
             - name: NAME
-              value: Igor de Souza Bezerra
+              valueFrom:
+                configMapKeyRef:
+                  name: goserver-env
+                  key: NAME
             - name: AGE
-              value: "24"
+              valueFrom:
+                configMapKeyRef:
+                  name: goserver-env
+                  key: AGE
