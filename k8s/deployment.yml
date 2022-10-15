@@ -18,6 +18,14 @@ spec:
       containers:
         - name: goserver
           image: igorsouzadocker/kubernetes-go:v5.3
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            periodSeconds: 5
+            failureThreshold: 3
+            timeoutSeconds: 1
+            successThreshold: 1
           envFrom:
             - configMapRef:
                 name: goserver-env
